@@ -450,14 +450,14 @@ function renderHome(app) {
   const heroGrid = el('div', 'container hero__grid');
 
   const heroContent = el('div', 'hero__content');
-  heroContent.appendChild(el('span', 'eyebrow', 'Частная косметологическая практика'));
+  heroContent.appendChild(el('span', 'eyebrow', 'Частный косметолог · самозанятая'));
   const heroTitle = el('h1', 'hero__title');
   heroTitle.appendChild(document.createTextNode('Здоровая кожа —'));
   heroTitle.appendChild(document.createElement('br'));
   heroTitle.appendChild(el('em', null, 'это система ухода'));
   heroContent.appendChild(heroTitle);
   heroContent.appendChild(el('p', 'hero__lead',
-    'Подбираю процедуры по типу кожи и состоянию, веду электронную карту каждого пациента и контролирую сроки между визитами. Спокойно, последовательно и без лишних обещаний.'));
+    'Меня зовут Ольга Титова. Я частный косметолог: принимаю в арендованном кабинете, работаю официально как самозанятая и выдаю чек через «Мой налог». Подбираю процедуры по типу кожи, веду электронную карту каждого пациента и контролирую сроки между визитами. Спокойно, последовательно и без лишних обещаний.'));
   const heroActions = el('div', 'hero__actions');
   const callBtn = el('a', 'btn btn--primary', 'Записаться по телефону');
   callBtn.href = 'tel:' + s.phoneHref;
@@ -476,75 +476,14 @@ function renderHome(app) {
   heroImg.setAttribute('onerror', '__imgFallback(this)');
   heroMedia.appendChild(heroImg);
   const badge = el('div', 'hero__badge');
-  badge.appendChild(el('strong', null, s.aboutExperience));
-  badge.appendChild(document.createTextNode('эстетическая косметология и уходовые программы'));
+  badge.appendChild(el('strong', null, 'Самозанятая'));
+  badge.appendChild(document.createTextNode('официальный статус и чек через «Мой налог» на каждый приём'));
   heroMedia.appendChild(badge);
 
   heroGrid.appendChild(heroContent);
   heroGrid.appendChild(heroMedia);
   hero.appendChild(heroGrid);
   app.appendChild(hero);
-
-  /* --- Почему стоит развивать проект --- */
-  const why = el('section', 'section section--tinted');
-  why.id = 'why';
-  const whyContainer = el('div', 'container');
-  whyContainer.appendChild(el('span', 'eyebrow', 'Проект'));
-  whyContainer.appendChild(el('h2', 'section__title', 'Почему стоит развивать этот проект'));
-  whyContainer.appendChild(el('p', 'section__lead',
-    'Прототип объединяет публичную страницу специалиста и внутренний учёт пациентов. Ниже — четыре причины, по которым такая система окупается уже на небольшой практике.'));
-
-  const whyGrid = el('div', 'why__grid');
-  const cards = [
-    {
-      icon: 'search',
-      title: 'Единая электронная карта',
-      text: 'Вместо бумажного журнала и заметок в телефоне вся история процедур, препаратов и реакций кожи хранится в одном месте и находится за секунды.'
-    },
-    {
-      icon: 'pencil',
-      title: 'Учёт противопоказаний',
-      text: 'Аллергии, предыдущие вмешательства и особенности кожи зафиксированы рядом с картой пациента. Это снижает риск осложнений и повышает доверие клиента.'
-    },
-    {
-      icon: 'phone',
-      title: 'Повторные визиты',
-      text: 'Контроль сроков между процедурами и напоминания о повторных записях напрямую увеличивают число возвращающихся клиентов и стабильность выручки.'
-    },
-    {
-      icon: 'arrow-right',
-      title: 'Готовность к росту',
-      text: 'Архитектура позволяет добавить нескольких мастеров, онлайн-запись, фотографии «до и после» и аналитику загрузки без перестройки всей системы.'
-    }
-  ];
-  cards.forEach(function (card) {
-    const node = el('article', 'why-card');
-    const iconWrap = el('span', 'why-card__icon');
-    iconWrap.appendChild(icon(card.icon, 24));
-    node.appendChild(iconWrap);
-    node.appendChild(el('h3', 'why-card__title', card.title));
-    node.appendChild(el('p', 'why-card__text', card.text));
-    whyGrid.appendChild(node);
-  });
-  whyContainer.appendChild(whyGrid);
-
-  const note = el('p', 'why__note',
-    'Это первая версия прототипа — публичная страница и учёт пациентов. Дальше: расписание, история процедур, напоминания.');
-  whyContainer.appendChild(note);
-
-  const whyMedia = el('div', 'why__media');
-  const labImg = document.createElement('img');
-  labImg.src = LAB_IMAGE;
-  labImg.width = 900;
-  labImg.height = 598;
-  labImg.alt = 'Светлая лаборатория косметологии с оборудованием на столе';
-  labImg.setAttribute('loading', 'lazy');
-  labImg.setAttribute('decoding', 'async');
-  labImg.setAttribute('onerror', '__imgFallback(this)');
-  whyMedia.appendChild(labImg);
-  whyContainer.appendChild(whyMedia);
-  why.appendChild(whyContainer);
-  app.appendChild(why);
 
   /* --- О специалисте --- */
   const about = el('section', 'section');
@@ -568,7 +507,7 @@ function renderHome(app) {
   aboutContent.appendChild(el('h2', 'section__title', 'Ольга Титова'));
   aboutContent.appendChild(el('p', null, s.aboutText));
   const facts = el('ul', 'about__facts');
-  facts.appendChild(el('li', null, s.aboutExperience));
+  facts.appendChild(el('li', null, 'Частная практика: самозанятая, приём в арендованном кабинете'));
   s.aboutDirections.split(';').forEach(function (item) {
     const trimmed = item.trim();
     if (trimmed) facts.appendChild(el('li', null, trimmed));
@@ -655,6 +594,40 @@ function renderHome(app) {
   contactsContainer.appendChild(contactsGrid);
   contacts.appendChild(contactsContainer);
   app.appendChild(contacts);
+
+  /* --- Сайт сделан на заказ --- */
+  const order = el('section', 'section section--tinted');
+  order.id = 'order-site';
+  const orderContainer = el('div', 'container');
+  orderContainer.appendChild(el('span', 'eyebrow', 'Для специалистов'));
+  orderContainer.appendChild(el('h2', 'section__title', 'Такой сайт можно заказать'));
+  orderContainer.appendChild(el('p', 'section__lead',
+    'Эта страница — не шаблон из конструктора, а рабочий инструмент: публичная визитка специалиста плюс учёт пациентов, история визитов и база препаратов в одном месте. Делаю такие сайты на заказ для косметологов, мастеров и частных специалистов: аккуратно, под ключ и без ежемесячных платежей конструктору.'));
+
+  const orderActions = el('div', 'hero__actions');
+  const tgName = (s.telegramUser || '').trim().replace(/^@/, '');
+  const vkUrl = (s.vkLink || '').trim();
+  if (tgName) {
+    const tgBtn = el('a', 'btn btn--primary', 'Написать в Telegram');
+    tgBtn.href = 'https://t.me/' + tgName;
+    tgBtn.target = '_blank';
+    tgBtn.rel = 'noopener';
+    orderActions.appendChild(tgBtn);
+  }
+  if (vkUrl) {
+    const vkBtn = el('a', 'btn btn--outline', 'Мы ВКонтакте');
+    vkBtn.href = vkUrl;
+    vkBtn.target = '_blank';
+    vkBtn.rel = 'noopener';
+    orderActions.appendChild(vkBtn);
+  }
+  if (!tgName && !vkUrl) {
+    orderActions.appendChild(el('p', 'muted-text',
+      'Контакты для заказа скоро появятся здесь — следите за обновлениями.'));
+  }
+  orderContainer.appendChild(orderActions);
+  order.appendChild(orderContainer);
+  app.appendChild(order);
 }
 
 /* ---------- Экран: вход ---------- */
@@ -1452,136 +1425,78 @@ function renderPatientCard(app, id) {
     leftCol.appendChild(photoBlock);
   }
 
-  /* Правая колонка: история визитов */
+  /* Правая колонка: запланированные визиты, форма добавления, история */
   const rightCol = el('div', 'detail-col');
-  const visitsBlock = el('section', 'card-block');
-  visitsBlock.appendChild(el('h2', null, 'История визитов'));
+  const today = todayIso();
 
-  function renderVisits() {
-    let list = patient.visits.slice().sort(function (a, b) { return b.date.localeCompare(a.date); });
+  /* --- Запланированные визиты пациента --- */
+  const scheduledBlock = el('section', 'card-block');
+  scheduledBlock.appendChild(el('h2', null, 'Запланированные визиты'));
 
-    // Фильтр запланированных визитов если включен
-    if (AppState.filters.scheduledOnly === true) {
-      list = list.filter(function (v) { return v.isScheduled === true; });
-    }
-
-    const oldTable = visitsBlock.querySelector('.table-scroll');
-    if (oldTable) oldTable.remove();
-    const oldEmpty = visitsBlock.querySelector('.visits-empty');
+  function renderScheduled() {
+    const old = scheduledBlock.querySelector('.table-scroll');
+    if (old) old.remove();
+    const oldEmpty = scheduledBlock.querySelector('.visits-empty');
     if (oldEmpty) oldEmpty.remove();
-    const oldActions = visitsBlock.querySelector('.visits-actions');
-    if (oldActions) oldActions.remove();
-    if (!list.length) {
-      const p = el('p', 'Визитов пока не было. Первая запись появится после приёма.');
+
+    const upcoming = patient.visits
+      .filter(function (v) { return v.isScheduled === true && v.date >= today; })
+      .sort(function (a, b) { return a.date.localeCompare(b.date); });
+
+    if (!upcoming.length) {
+      const p = el('p', 'Нет предстоящих записей. Добавьте запланированный визит формой ниже — отметьте «Запланировать визит».');
       p.className = 'muted-text visits-empty';
-      visitsBlock.appendChild(p);
+      scheduledBlock.appendChild(p);
       return;
     }
 
-    // Добавляем блок фильтров и кнопок действий над таблицей
-    const headerActions = el('div', 'visits-actions');
-    
-    // Кнопка фильтрации
-    const filterBtn = el('button', 'btn btn--outline btn--sm', 'Запланированные только');
-    filterBtn.type = 'button';
-    filterBtn.setAttribute('aria-label', 'Показать только запланированные визиты');
-    filterBtn.addEventListener('click', function () {
-      AppState.filters.scheduledOnly = !AppState.filters.scheduledOnly;
-      renderVisits();
-    });
-    headerActions.appendChild(filterBtn);
-
-    // Кнопка сброса фильтра
-    const resetFilterBtn = el('button', 'btn btn--outline btn--sm muted', 'Все');
-    resetFilterBtn.type = 'button';
-    resetFilterBtn.setAttribute('aria-label', 'Показать все визиты');
-    resetFilterBtn.addEventListener('click', function () {
-      AppState.filters.scheduledOnly = false;
-      renderVisits();
-    });
-    headerActions.appendChild(resetFilterBtn);
-
-    // Подсчет статистики (количество запланированных)
-    const scheduledCount = list.filter(function(v) { return v.isScheduled === true; }).length;
-    if (scheduledCount > 0 && AppState.filters.scheduledOnly !== true) {
-      const statsWrap = el('span', 'visits-stats muted-text');
-      statsWrap.appendChild(el('strong', null, scheduledCount + ' запланировано'));
-      headerActions.appendChild(statsWrap);
-    }
-
-    visitsBlock.insertBefore(headerActions, visitsBlock.firstChild);
-
     const scroll = el('div', 'table-scroll');
     const table = el('table', 'visits-table');
-    table.setAttribute('aria-label', 'История визитов');
+    table.setAttribute('aria-label', 'Запланированные визиты');
     const thead = document.createElement('thead');
     const trh = document.createElement('tr');
-    ['Дата', 'Процедура', 'Препарат', 'Комментарий', 'Статус'].forEach(function (h) {
+    ['Дата', 'Процедура', 'Комментарий', 'Действия'].forEach(function (h) {
       trh.appendChild(el('th', null, h));
     });
     thead.appendChild(trh);
     table.appendChild(thead);
     const tbody = document.createElement('tbody');
-    list.forEach(function (v) {
+    upcoming.forEach(function (v) {
       const tr = document.createElement('tr');
-      
-      // Статус визита
-      let statusText = '';
-      if (v.isScheduled === true && v.date >= todayIso()) {
-        statusText = 'Запланирован';
-      } else if (v.isScheduled === false) {
-        statusText = 'Отменён/Прошёл';
-      }
-      const statusTd = el('td', null, statusText);
-      
-      // Кнопки действий для каждого визита
-      let actionsDiv;
-      if (v.procedure) { // Показываем кнопки только если есть процедура
-        actionsDiv = el('div', 'visit-actions');
-        
-        // Кнопка отменить (для запланированных)
-        if (v.isScheduled === true && v.date >= todayIso()) {
-          const cancelBtn = el('button', 'btn btn--danger btn--sm icon-btn', 'Отменить');
-          cancelBtn.type = 'button';
-          cancelBtn.setAttribute('aria-label', 'Отменить запись');
-          cancelBtn.addEventListener('click', function () {
-            Store.updateVisitStatus(v.id, false);
-            loadPatients();
-            render();
-            showToast('Запись отменена', { type: 'warning' });
-          });
-          actionsDiv.appendChild(cancelBtn);
-        }
-
-        // Кнопка редактировать (для прошедших и запланированных)
-        const editBtn = el('button', 'btn btn--primary btn--sm icon-btn', 'Редактировать');
-        editBtn.type = 'button';
-        editBtn.setAttribute('aria-label', 'Редактировать запись');
-        editBtn.addEventListener('click', function () {
-          openEditVisitModal(v, patient.id);
-        });
-        actionsDiv.appendChild(editBtn);
-      }
-      
-      tr.appendChild(el('td', null, formatDateShort(v.date)));
-      tr.appendChild(el('td', null, v.procedure));
-      tr.appendChild(el('td', null, v.product || '—'));
+      tr.appendChild(el('td', null, formatDateRu(v.date)));
+      tr.appendChild(el('td', null, v.procedure || '—'));
       tr.appendChild(el('td', null, v.comment || '—'));
-      tr.appendChild(statusTd);
-      
-      if (actionsDiv) {
-        tr.appendChild(actionsDiv);
-      }
-      
+      const actTd = el('td');
+      const actWrap = el('div', 'visit-actions');
+      const cancelBtn = el('button', 'btn btn--danger btn--sm icon-btn', 'Отменить');
+      cancelBtn.type = 'button';
+      cancelBtn.setAttribute('aria-label', 'Отменить запись');
+      cancelBtn.addEventListener('click', function () {
+        Store.updateVisitStatus(v.id, false);
+        loadPatients();
+        render();
+        showToast('Запись отменена', { type: 'warning' });
+      });
+      const editBtn = el('button', 'btn btn--primary btn--sm icon-btn', 'Редактировать');
+      editBtn.type = 'button';
+      editBtn.setAttribute('aria-label', 'Редактировать запись');
+      editBtn.addEventListener('click', function () {
+        openEditVisitModal(v, patient.id);
+      });
+      actWrap.appendChild(editBtn);
+      actWrap.appendChild(cancelBtn);
+      actTd.appendChild(actWrap);
+      tr.appendChild(actTd);
       tbody.appendChild(tr);
     });
     table.appendChild(tbody);
     scroll.appendChild(table);
-    visitsBlock.appendChild(scroll);
+    scheduledBlock.appendChild(scroll);
   }
-  renderVisits();
-  rightCol.appendChild(visitsBlock);
+  renderScheduled();
+  rightCol.appendChild(scheduledBlock);
 
+  /* --- Форма добавления записи --- */
   const visitFormWrap = el('section', 'card-block');
   visitFormWrap.appendChild(el('h2', null, 'Добавить запись о визите'));
   const vForm = el('form');
@@ -1621,6 +1536,11 @@ function renderPatientCard(app, id) {
   vComment.setAttribute('aria-label', 'Комментарий');
   visitField('visit-form__comment', 'Комментарий', vComment, '');
 
+  const vSteps = el('textarea');
+  vSteps.placeholder = '1. Очищение кожи… 2. Пилинг… 3. Маска…';
+  vSteps.setAttribute('aria-label', 'Последовательность действий');
+  visitField('visit-form__steps', 'Последовательность действий', vSteps, '');
+
   const vScheduled = el('input');
   vScheduled.type = 'checkbox';
   const scheduledWrap = el('div', 'field visit-form__scheduled');
@@ -1658,15 +1578,153 @@ function renderPatientCard(app, id) {
       procedure: vProc.value.trim(),
       product: vProd.value.trim(),
       comment: vComment.value.trim(),
+      steps: vSteps.value.trim(),
       isScheduled: vScheduled.checked
     });
     Store.savePatient(patient);
     loadPatients();
     vForm.reset();
-    renderVisits();
-    showToast('Запись о визите добавлена', { type: 'success' });
     render();
+    showToast('Запись о визите добавлена', { type: 'success' });
   });
+
+  /* --- История визитов (внизу): фильтры неделя/месяц/год --- */
+  const visitsBlock = el('section', 'card-block');
+  visitsBlock.appendChild(el('h2', null, 'История визитов'));
+
+  /* Фильтр периода: all | week | month | year */
+  if (typeof AppState.filters.historyPeriod === 'undefined') {
+    AppState.filters.historyPeriod = 'all';
+  }
+
+  function periodStart(period) {
+    const d = new Date();
+    if (period === 'week') {
+      d.setDate(d.getDate() - 7);
+    } else if (period === 'month') {
+      d.setMonth(d.getMonth() - 1);
+    } else if (period === 'year') {
+      d.setFullYear(d.getFullYear() - 1);
+    } else {
+      return null;
+    }
+    return d.toISOString().split('T')[0];
+  }
+
+  function visitStatus(v) {
+    if (v.isScheduled === true && v.date >= today) return 'Запланирован';
+    if (v.isScheduled === false && v.date >= today) return 'Отменён';
+    return 'Прошёл';
+  }
+
+  function renderVisits() {
+    const oldScroll = visitsBlock.querySelector('.table-scroll');
+    if (oldScroll) oldScroll.remove();
+    const oldEmpty = visitsBlock.querySelector('.visits-empty');
+    if (oldEmpty) oldEmpty.remove();
+    const oldFilters = visitsBlock.querySelector('.visits-filters');
+    if (oldFilters) oldFilters.remove();
+
+    /* История: прошедшие и отменённые визиты (запланированные будущие не дублируем) */
+    let list = patient.visits.filter(function (v) {
+      return !(v.isScheduled === true && v.date >= today);
+    });
+    const period = AppState.filters.historyPeriod;
+    const from = periodStart(period);
+    if (from) {
+      list = list.filter(function (v) { return v.date >= from; });
+    }
+    list = list.sort(function (a, b) { return b.date.localeCompare(a.date); });
+
+    /* Кнопки фильтров периода */
+    const filtersWrap = el('div', 'visits-filters');
+    [['all', 'Все'], ['week', 'Неделя'], ['month', 'Месяц'], ['year', 'Год']].forEach(function (item) {
+      const b = el('button', 'btn btn--sm visits-filters__btn' + (period === item[0] ? ' btn--primary' : ' btn--outline'), item[1]);
+      b.type = 'button';
+      b.setAttribute('aria-label', 'Показать визиты за ' + item[1].toLowerCase());
+      b.addEventListener('click', function () {
+        AppState.filters.historyPeriod = item[0];
+        renderVisits();
+      });
+      filtersWrap.appendChild(b);
+    });
+    visitsBlock.appendChild(filtersWrap);
+
+    if (!list.length) {
+      const p = el('p', 'За выбранный период записей нет.');
+      p.className = 'muted-text visits-empty';
+      visitsBlock.appendChild(p);
+      return;
+    }
+
+    const scroll = el('div', 'table-scroll');
+    const table = el('table', 'visits-table');
+    table.setAttribute('aria-label', 'История визитов');
+    const thead = document.createElement('thead');
+    const trh = document.createElement('tr');
+    ['Дата', 'Процедура', 'Статус', 'Действия'].forEach(function (h) {
+      trh.appendChild(el('th', null, h));
+    });
+    thead.appendChild(trh);
+    table.appendChild(thead);
+    const tbody = document.createElement('tbody');
+    list.forEach(function (v) {
+      const tr = document.createElement('tr');
+      tr.appendChild(el('td', null, formatDateRu(v.date)));
+      tr.appendChild(el('td', null, v.procedure || '—'));
+      tr.appendChild(el('td', null, visitStatus(v)));
+
+      const actTd = el('td');
+      const actWrap = el('div', 'visit-actions');
+      const openBtn = el('button', 'btn btn--outline btn--sm icon-btn', 'Открыть');
+      openBtn.type = 'button';
+      openBtn.setAttribute('aria-label', 'Открыть визит');
+      openBtn.addEventListener('click', function () {
+        openVisitDetailModal(v, patient.id);
+      });
+      const delBtn = el('button', 'btn btn--danger btn--sm icon-btn', 'Удалить');
+      delBtn.type = 'button';
+      delBtn.setAttribute('aria-label', 'Удалить визит из истории');
+      delBtn.addEventListener('click', function () {
+        let modal = null;
+        modal = openModal({
+          title: 'Точно удалить визит?',
+          buildBody: function (body) {
+            const text = el('p', 'modal__text');
+            text.appendChild(document.createTextNode('Визит «'));
+            text.appendChild(el('strong', null, v.procedure || '—'));
+            text.appendChild(document.createTextNode('» от ' + formatDateRu(v.date) +
+              ' будет удалён из истории без возможности восстановления. Вы уверены?'));
+            body.appendChild(text);
+          },
+          actions: [
+            { label: 'Отмена', kind: 'ghost', onClick: function () { modal.close(); } },
+            {
+              label: 'Да, удалить',
+              kind: 'danger',
+              onClick: function () {
+                Store.deleteVisit(patient.id, v.id);
+                modal.close();
+                loadPatients();
+                render();
+                showToast('Визит удалён из истории', { type: 'warning' });
+              }
+            }
+          ]
+        });
+      });
+      actWrap.appendChild(openBtn);
+      actWrap.appendChild(delBtn);
+      actTd.appendChild(actWrap);
+      tr.appendChild(actTd);
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+    scroll.appendChild(table);
+    visitsBlock.appendChild(scroll);
+  }
+  renderVisits();
+  rightCol.appendChild(visitsBlock);
 
   grid.appendChild(leftCol);
   grid.appendChild(rightCol);
@@ -1701,6 +1759,12 @@ function openEditVisitModal(visit, patientId) {
   commentInput.value = visit.comment || '';
   commentInput.setAttribute('aria-label', 'Комментарий');
 
+  const stepsInput = el('textarea');
+  stepsInput.rows = 5;
+  stepsInput.value = visit.steps || '';
+  stepsInput.placeholder = '1. Очищение кожи…\n2. Пилинг…\n3. Маска…';
+  stepsInput.setAttribute('aria-label', 'Последовательность действий');
+
   const scheduledCheck = el('input');
   scheduledCheck.type = 'checkbox';
   scheduledCheck.checked = visit.isScheduled === true;
@@ -1719,6 +1783,7 @@ function openEditVisitModal(visit, patientId) {
     addField('Процедура *', procInput);
     addField('Препарат/продукт', prodInput);
     addField('Комментарий', commentInput);
+    addField('Последовательность действий', stepsInput);
     body.appendChild(scheduledLabel);
     body.appendChild(el('p', 'muted-text',
       'Отметка «Запланированный визит» переносит запись в список предстоящих. Снимите отметку, если визит отменён или уже прошёл.'));
@@ -1751,6 +1816,7 @@ function openEditVisitModal(visit, patientId) {
     target.procedure = procedure;
     target.product = prodInput.value.trim();
     target.comment = commentInput.value.trim();
+    target.steps = stepsInput.value.trim();
     target.isScheduled = scheduledCheck.checked;
     Store.savePatient(patient);
     loadPatients();
@@ -1769,6 +1835,67 @@ function openEditVisitModal(visit, patientId) {
   });
   procInput.setAttribute('data-autofocus', '');
   procInput.focus();
+}
+
+/* ---------- Детальный просмотр визита ---------- */
+
+function openVisitDetailModal(visit, patientId) {
+  let modal = null;
+
+  const patient = Store.getPatient(patientId);
+  const patientName = patient ? patient.fullName : '—';
+
+  function infoRow(label, value) {
+    const row = el('div', 'detail-info__row');
+    row.appendChild(el('dt', null, label));
+    row.appendChild(el('dd', null, value || '—'));
+    return row;
+  }
+
+  function buildBody(body) {
+    const today = todayIso();
+    let status = 'Прошёл';
+    if (visit.isScheduled === true && visit.date >= today) status = 'Запланирован';
+    else if (visit.isScheduled === false && visit.date >= today) status = 'Отменён';
+
+    const dl = el('dl', 'detail-info');
+    dl.appendChild(infoRow('Пациент', patientName));
+    dl.appendChild(infoRow('Дата', formatDateRu(visit.date)));
+    dl.appendChild(infoRow('Процедура', visit.procedure));
+    dl.appendChild(infoRow('Препарат/продукт', visit.product));
+    dl.appendChild(infoRow('Комментарий', visit.comment));
+    dl.appendChild(infoRow('Статус', status));
+    body.appendChild(dl);
+
+    body.appendChild(el('h3', 'detail-info__heading', 'Последовательность действий косметолога'));
+    if (visit.steps) {
+      const stepsList = el('ol', 'visit-steps');
+      visit.steps.split('\n').forEach(function (line) {
+        const trimmed = line.trim();
+        if (trimmed) stepsList.appendChild(el('li', null, trimmed));
+      });
+      body.appendChild(stepsList);
+    } else {
+      body.appendChild(el('p', 'muted-text',
+        'Последовательность действий не записана. Нажмите «Редактировать», чтобы добавить протокол процедуры.'));
+    }
+  }
+
+  modal = openModal({
+    title: 'Визит · подробно',
+    buildBody: buildBody,
+    actions: [
+      { label: 'Закрыть', kind: 'ghost', onClick: function () { modal.close(); } },
+      {
+        label: 'Редактировать',
+        kind: 'primary',
+        onClick: function () {
+          modal.close();
+          openEditVisitModal(visit, patientId);
+        }
+      }
+    ]
+  });
 }
 
 
@@ -2136,12 +2263,6 @@ function renderSettings(app) {
   phoneHrefInput.setAttribute('aria-label', 'Телефон для набора');
   addSettingField('phoneHref', 'Телефон для набора (только цифры и +)', phoneHrefInput);
 
-  const expInput = el('input');
-  expInput.type = 'text';
-  expInput.value = s.aboutExperience;
-  expInput.setAttribute('aria-label', 'Стаж');
-  addSettingField('aboutExperience', 'Стаж (строка)', expInput);
-
   const dirInput = el('input');
   dirInput.type = 'text';
   dirInput.value = s.aboutDirections;
@@ -2154,6 +2275,30 @@ function renderSettings(app) {
   addSettingField('aboutText', 'Текст «О специалисте»', aboutInput);
 
   colLeft.appendChild(textCard);
+
+  /* Контакты для блока «заказать сайт» */
+  const orderCard = el('section', 'card-block');
+  orderCard.appendChild(el('h2', null, 'Контакты для заказа сайта'));
+  orderCard.appendChild(el('p', 'muted-text',
+    'Показываются в блоке «Такой сайт можно заказать» внизу главной страницы. Оставьте пустым, чтобы скрыть кнопку.'));
+
+  const tgInput = el('input');
+  tgInput.type = 'text';
+  tgInput.value = s.telegramUser;
+  tgInput.placeholder = 'username (без @)';
+  tgInput.setAttribute('aria-label', 'Telegram');
+  addSettingField('telegramUser', 'Telegram (username)', tgInput);
+  orderCard.appendChild(fields.telegramUser.wrap);
+
+  const vkInput = el('input');
+  vkInput.type = 'url';
+  vkInput.value = s.vkLink;
+  vkInput.placeholder = 'https://vk.com/…';
+  vkInput.setAttribute('aria-label', 'Ссылка ВКонтакте');
+  addSettingField('vkLink', 'Ссылка ВКонтакте', vkInput);
+  orderCard.appendChild(fields.vkLink.wrap);
+
+  colLeft.appendChild(orderCard);
 
   /* Услуги и цены */
   const colRight = el('div', 'settings-col');
@@ -2262,8 +2407,9 @@ function renderSettings(app) {
     Store.saveSettings({
       phoneDisplay: phoneDisplay,
       phoneHref: phoneHref,
-      aboutExperience: fields.aboutExperience.input.value.trim(),
       aboutDirections: fields.aboutDirections.input.value.trim(),
+      telegramUser: fields.telegramUser.input.value.trim(),
+      vkLink: fields.vkLink.input.value.trim(),
       aboutText: fields.aboutText.input.value.trim(),
       services: services
     });

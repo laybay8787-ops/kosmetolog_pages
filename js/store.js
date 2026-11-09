@@ -184,9 +184,10 @@ function defaultSettings() {
     siteName: 'Косметолог Ольга Титова',
     phoneDisplay: '+7 (905) 123-45-67',
     phoneHref: '+79051234567',
-    aboutExperience: 'Более 12 лет опыта',
     aboutDirections: 'Эстетическая косметология;Уходовые программы;Инъекционные методики;Массаж лица',
-    aboutText: 'Меня зовут Ольга Титова. Я веду частную косметологическую практику: подбираю уход под тип кожи, работаю с препаратами доказанной эффективности и веду электронную карту каждого пациента. Верю, что красивая кожа — это регулярность и честная работа без лишних обещаний.',
+    telegramUser: '',
+    vkLink: '',
+    aboutText: 'Меня зовут Ольга Титова, я частный косметолог. Работаю как самозанятая: официально оформляю каждый приём и выдаю чек через приложение «Мой налог». Принимаю в уютном кабинете, который снимаю в центре города. Подбираю уход под тип кожи, работаю с препаратами доказанной эффективности и веду электронную карту каждого пациента. Верю, что красивая кожа — это регулярность и честная работа без лишних обещаний.',
     services: [
       { id: 'svc1', name: 'Консультация и диагностика кожи', price: 1500, duration: '45 мин' },
       { id: 'svc2', name: 'Чистка лица (аппаратная)', price: 3500, duration: '60 мин' },
@@ -297,6 +298,16 @@ function updateVisitStatus(visitId, isScheduled) {
     write(KEYS.patients, JSON.stringify(patients));
   }
   return changed;
+}
+
+function deleteVisit(patientId, visitId) {
+  const patient = getPatient(patientId);
+  if (!patient) return false;
+  const before = (patient.visits || []).length;
+  patient.visits = (patient.visits || []).filter(function (v) { return v.id !== visitId; });
+  if (patient.visits.length === before) return false;
+  savePatient(patient);
+  return true;
 }
 
 function getPatientScheduledVisitsCount(patientId) {
@@ -449,5 +460,6 @@ const Store = {
   validateImport: validateImport,
   importAll: importAll,
   getPatientScheduledVisitsCount: getPatientScheduledVisitsCount,
-  updateVisitStatus: updateVisitStatus
+  updateVisitStatus: updateVisitStatus,
+  deleteVisit: deleteVisit
 };

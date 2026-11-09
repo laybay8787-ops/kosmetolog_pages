@@ -1654,3 +1654,54 @@ mark {
 .cell-name a:hover {
   color: var(--accent, #0F5A48);
 }
+
+/* ---------- Фильтры периода истории визитов ---------- */
+.visits-filters {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 0 0 0.75rem;
+}
+
+.visits-filters .visits-filters__btn {
+  margin: 0;
+}
+
+/* ---------- Детальный просмотр визита ---------- */
+.detail-info {
+  margin: 0 0 1rem;
+}
+
+.detail-info__row {
+  display: flex;
+  gap: 1rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--line, #E3E9E5);
+}
+
+.detail-info__row dt {
+  flex: 0 0 11rem;
+  font-weight: 600;
+  color: var(--muted, #5B6E64);
+}
+
+.detail-info__row dd {
+  margin: 0;
+  flex: 1;
+  white-space: pre-wrap;
+}
+
+.detail-info__heading {
+  margin: 1rem 0 0.5rem;
+  font-size: 1rem;
+}
+
+.visit-steps {
+  margin: 0;
+  padding-left: 1.4rem;
+}
+
+.visit-steps li {
+  padding: 0.2rem 0;
+  line-height: 1.5;
+}
